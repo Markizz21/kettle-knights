@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Kettle Knights</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+canvas{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+</style></head><body><canvas id="c"></canvas>
+<script>
+const STORY = String.raw`# KETTLE KNIGHTS - сценарий
+# Команды: bg, show, hide, clear, jump, set, add, if, card, end, @метка, "? вариант -> метка"
+# Реплика: ключ[настроение]: текст   (mark vlad danil lesha rafael tato wolf cast chat)
+# Настроения: neutral happy angry sad shock
+
+set spirit 0
+set grades 0
+set skill 0
+set helmet 0
+set first 0
+
+card ГЛАВА 1|Девятый «Д»
+bg classroom
+show tato neutral
+Осенний понедельник, последний урок. В 9«Д» идёт классный час. За окном моросит, в кабинете пахнет мелом и мандаринами.
+tato: Так, тихо! Телефоны убрали. Кто достанет — минус балл в журнал.
+show danil sad
+danil: Татьяна Николаевна, я на секундочку! Там важное сообщение!
+tato[angry]: Для меня всё важное написано на доске. Убрал.
+danil: ...Убрал.
+hide danil
+Класс тихо хихикает. Татьяну Николаевну все называют «Тато», но только за глаза.
+tato[happy]: И последнее, ребята. В городе объявили открытый отбор на Чебоксарский мажор по CS2. Играть могут все, даже школьные команды.
+hide tato
+show mark shock
+Марк (Markizz) чуть не падает со стула. Открытый отбор на мажор — шанс, который выпадает раз в жизни.
+mark: Так. Мне нужна команда. Срочно.
+
+bg hall
+clear
+Перемена. Марк ловит друзей у шкафчиков. Он знает: все четверо играют в CS2, но каждый сам по себе, в случайных матчах.
+show mark happy
+mark: Слушайте, есть план! Собираем настоящую команду. С названием, ролями и режимом дня!
+mark: Но с чего начать? Надо уговорить хотя бы одного.
+? Сначала Влада. Он молчун, но целится как робот -> c1_vlad
+? Сначала Данила. Он всегда готов ворваться на точку -> c1_danil
+? Сначала Лёшу. С ним хотя бы весело -> c1_lesha
+
+@c1_vlad
+set first 1
+add spirit 1
+show vlad neutral
+vlad: ...
+mark: Влад, ты же quietlyyy не просто так. Мне нужен человек с АВП, который не мажет.
+vlad: Я мажу.
+mark[happy]: Редко! Два раза за матч, я считал.
+vlad[happy]: ...Ладно. Но говорить на тренировках я буду только по делу.
+mark: Идеально. Остальным тоже не помешает тишина.
+jump c1_rest
+
+@c1_danil
+set first 2
+add spirit 1
+show danil happy
+danil: Команда?! Я в деле! Я первый зайду на любую точку, вы только скажите!
+mark: Данил, смысл не в том, чтобы умереть первым.
+danil[sad]: Так обидно сказал...
+mark: Смысл в том, чтобы после тебя кто-то добил. Тогда это энтри.
+danil[happy]: Ну так бы сразу! kvartal на связи!
+jump c1_rest
+
+@c1_lesha
+set first 3
+add spirit 1
+show lesha happy
+lesha: Команда? А печеньки будут? Я без печенек не стратег.
+mark: Лёша, ты саппорт. Ты кидаешь флэшки, а печеньки приносишь по желанию.
+lesha: Тогда я согласен. Пяточок в игре!
+mark[happy]: Первый есть. Уже не тоска.
+jump c1_rest
+
+@c1_rest
+clear
+show mark neutral
+show rafael neutral
+rafael: Вы очень громко решаете судьбу мира. Я kupo4ek, и я давно ждал, когда вы догадаетесь.
+mark[shock]: Ты слышал весь разговор?
+rafael[happy]: Я стоял за углом. И уже придумал себе роль. Я лёрк. Незаметный. Смертоносный.
+mark[happy]: Роли: я капитан и зову стратегию. Влад на АВП. Данил на энтри. Лёша саппорт. Рафаэль лёрк.
+show danil happy
+show vlad neutral
+show lesha happy
+danil: Ура!
+vlad: Тихо.
+lesha: Печенька?
+Так в девятом «Д» появилась команда. Правда, пока без названия и без места для тренировок.
+
+bg club
+clear
+show tato neutral
+Кабинет информатики 214. Единственное место в школе с нормальными компьютерами. На подоконнике стоит старый электрический чайник Татьяны Николаевны, её гордость.
+mark: Татьяна Николаевна, нам нужен кабинет после уроков. Для подготовки к турниру.
+tato: Для турнира по компьютерным играм?
+mark: Для открытого отбора. Мы будем учиться, честно!
+tato[angry]: Условие первое. Оценки не опускать. Одна тройка в четверти, и лавочка закрыта.
+tato: Условие второе. Чайник не трогать.
+mark[happy]: Принято!
+hide tato
+show mark happy
+show vlad neutral
+show danil happy
+show lesha happy
+show rafael neutral
+Вечером друзья собираются у компьютеров. Чайник тихо щёлкает, пока Татьяна Николаевна заваривает чай и проверяет тетради.
+mark: Нам нужно название для заявки. Регистрация закрывается сегодня.
+danil: Marksmen! Нет. Fire Fox! Нет...
+rafael: Рыцари. Они стоят насмерть и не сдаются. И чай пьют.
+lesha: А ещё у нас чайник. Kettle Knights.
+vlad[happy]: Звучит смешно. Значит, запомнится.
+? Серьёзно? Рыцари чайника? -> c1_name_a
+? Мне нравится. Берём! -> c1_name_b
+
+@c1_name_a
+mark[sad]: Рыцари чайника... Мы же выглядим как клоуны.
+rafael: Клоуны не побеждают.
+lesha[happy]: Побеждают, если смешно.
+mark[happy]: Ладно. Kettle Knights.
+jump c1_name_end
+
+@c1_name_b
+add spirit 1
+mark[happy]: Kettle Knights. Звучит как команда, которую невозможно забыть.
+danil[happy]: Я как рыцарь чайника готов на всё!
+rafael[happy]: Я сделаю шлем.
+set helmet 1
+jump c1_name_end
+
+@c1_name_end
+Заявка отправлена. Серверы приняли команду без возражений. Сети безразлично, как её зовут.
+
+card ГЛАВА 2|Первые раунды
+bg club
+clear
+show mark neutral
+show vlad neutral
+show danil neutral
+show lesha neutral
+show rafael neutral
+Недели летят. После уроков они играют по три часа подряд. Марк разбирает демки, рисует схемы на доске, просит Влада чаще говорить, а Данила реже умирать.
+chat: Данил, ты опять зашёл первым. Рандом-мейтов опять подвёл.
+danil[sad]: Это называется энтри!
+mark: Завтра контрольная по алгебре, а вечером товарищеский матч с командой из соседней школы.
+mark: Нужно решить, куда потратить вечер.
+? Повторить алгебру. Тато нас не простит -> c2_study
+? Идти на тренировку. Матч важнее -> c2_train
+? Полчаса на учёбу, остальное на игру -> c2_mix
+
+@c2_study
+add grades 2
+add spirit 1
+show tato happy
+tato: Двенадцать человек писали контрольную. У тебя и у твоих друзей оценки выше среднего. Приятный сюрприз.
+mark[happy]: Мы очень старались.
+tato: Вижу. Так держать.
+hide tato
+jump c2_after
+
+@c2_train
+add skill 2
+show tato angry
+tato: Контрольная по алгебре. Среднее в вашей компании: три с минусом.
+mark[sad]: Мы... вечером учили. Немного.
+tato: Ещё одна такая работа, и кабинет закрыт. Я не шучу.
+add grades -1
+hide tato
+jump c2_after
+
+@c2_mix
+add skill 1
+add grades 1
+show tato neutral
+tato: Контрольные написаны на четвёрки. Не блеск, но достойно.
+mark: Спасибо, Татьяна Николаевна.
+hide tato
+jump c2_after
+
+@c2_after
+bg club
+Первый матч. Против команды «Седьмая школа» они играют на карте Mirage.
+cast: Добро пожаловать на трансляцию отборочного. Сегодня дебют команды Kettle Knights!
+show mark neutral
+mark: Дефолт. Влад держит мид, Данил идёт первым на А, Лёша кидает флэш.
+danil[happy]: Ииии-хуу!
+lesha[happy]: Флэш пошёл!
+vlad: Один. Два. Готово.
+Влад снимает двоих с одного выстрела. Данил прорывается, Рафаэль добивает через коннектор. Победа 13:7.
+chat: Эй, а чайниковые рыцари играют нормально!
+show lesha happy
+lesha: Нас заметили. Наконец-то.
+
+card ПОРАЖЕНИЕ|Iron Wolves
+bg club
+clear
+show mark neutral
+show vlad neutral
+show danil neutral
+show lesha neutral
+show rafael neutral
+Следующий соперник серьёзнее. Iron Wolves, команда из соседней области. Играют давно, на LAN-ах бывали.
+show wolf neutral
+wolf: Школьники? Ну, постарайтесь не плакать.
+hide wolf
+danil[angry]: Он нас не уважает!
+mark: Значит, докажем делом.
+Игра идёт на Inferno. Счёт 11:12. Решающий раунд, у Влада на руках АВП.
+cast: Влад на банане! АВП смотрит в проход... и промах!
+vlad[sad]: Не попал.
+Волки забирают раунд. Счёт 11:13. Kettle Knights уходят в нижнюю сетку.
+bg club
+show vlad sad
+vlad: Это я виноват.
+add spirit -1
+? Подойти и поддержать: «Мы вместе выиграли, вместе проиграли» -> c2_support
+? Разобрать его позицию по демке без лишних слов -> c2_analyze
+? Дать ему побыть одному -> c2_alone
+
+@c2_support
+add spirit 2
+mark: Влад, это не твой промах. Мы все стоим здесь. Мы все проиграли. Мы все пойдём дальше.
+vlad[happy]: ...Спасибо, Марк.
+danil[happy]: И я виноват! Я тоже первым умер, Влад!
+lesha: Печенька поможет. Держи.
+vlad[happy]: Тише, пожалуйста.
+jump c2_lower
+
+@c2_analyze
+add skill 1
+mark: Вот демка. Смотри: ты стоял на втором метре дальше, чем нужно. Всего на полшага.
+vlad: ...Вижу. Спасибо.
+mark: Исправим.
+vlad: Исправим.
+jump c2_lower
+
+@c2_alone
+add spirit -1
+show lesha happy
+mark: Тогда мы пока оставим тебя.
+lesha: Подожди. Влад, я рядом. Просто так. Без разговоров.
+vlad[happy]: ...Это неплохо.
+add spirit 1
+jump c2_lower
+
+@c2_lower
+bg club
+Нижняя сетка. Один проигрыш, и всё закончится. Команда играет, как будто у каждого за спиной стоит сама Тато.
+cast: Казалось, что Kettle Knights выбывают. Но нет! Они выигрывают подряд пять матчей!
+Последний матч нижней сетки. Счёт 12:12 в овертайме на Ancient.
+show vlad neutral
+mark: Влад. Мне нужен твой выстрел.
+vlad: Сегодня попаду.
+И он попадает. Один. Второй. Третий. Раунд за раундом.
+cast: Тринадцать-двенадцать! Kettle Knights проходят на Чебоксарский мажор!
+show lesha happy
+show danil happy
+show rafael happy
+danil[happy]: МЫ ЕДЕМ В ЧЕБОКСАРЫ!
+rafael[happy]: Мой шлем будет в камерах!
+mark[happy]: Мы едем.
+
+card ГЛАВА 3|Чебоксары
+bg bus
+clear
+show tato neutral
+show mark neutral
+Автобус едет всю ночь. Татьяна Николаевна вызвалась сопровождающей, потому что школьников одних никто не отпустит. С собой она везёт сумку, термос и... тот самый чайник.
+mark: Татьяна Николаевна, вы взяли чайник?
+tato[happy]: Вдруг в гостинице нет нормального? Я пока не доверяю общепиту.
+show danil sad
+danil: А я не могу уснуть. Страшно.
+show rafael neutral
+rafael: Мы не могли попасть сюда случайно. Значит, должны играть спокойно.
+mark: Спасибо, Рафаэль.
+? Поддержать Данила: «Мы не одни. Мы команда» -> c3_calm_a
+? Дать всем выспаться и ничего не говорить -> c3_calm_b
+
+@c3_calm_a
+add spirit 2
+mark: Данил, мы рядом. Если будет страшно, смотри на нас. Мы рядом.
+danil[happy]: Спасибо. Мне уже лучше.
+tato[happy]: Спи, мой рыцарь.
+jump c3_arrive
+
+@c3_calm_b
+add spirit 1
+mark: Спим. Завтра будет тяжёлый день.
+tato: Правильно. Утро вечера мудренее.
+jump c3_arrive
+
+@c3_arrive
+bg arena
+clear
+Чебоксарская арена. Лучи света, огромный экран, гул зрителей. Сердце колотится у каждого.
+show mark neutral
+show vlad neutral
+show danil neutral
+show lesha neutral
+show rafael neutral
+rafael: Тут... очень много людей.
+vlad: Много.
+lesha: Если я сейчас упаду, поймайте. И принесите печеньку.
+mark[happy]: Мы сыграем так, как играли всегда. Спокойно. Командой.
+cast: Дебютанты, школьная команда из девятого «Д», Kettle Knights! Поприветствуем!
+
+bg stage
+Групповой этап. Они выигрывают первые два матча, проигрывают один, но всё равно проходят в плей-офф. Вся арена уже знает их шутки про чайник.
+chat: Рыцари чайника! Рыцари чайника!
+show danil happy
+danil[happy]: Нас уже знают!
+Полуфинал. Соперник — Void Squad, чемпионы прошлого мажора.
+cast: Void Squad ведёт 8:4 на Nuke. Kettle Knights берут тайм-аут.
+show mark shock
+mark: Спокойно. Они ломают нас на рашах. Вы помните? Дефолт, дым, ждём ошибку.
+lesha: Дым — моя работа!
+rafael: Лёрк держу.
+Игра разворачивается. Три смоука подряд, Рафаэль заходит с фланга, Данил дожимает.
+cast: Невероятно! Школьники выбивают чемпионов!
+Победа 2:1 по картам. Kettle Knights выходят в гранд-финал.
+
+card ФИНАЛ|Iron Wolves
+bg stage
+clear
+show wolf neutral
+show mark neutral
+Гранд-финал. Против них те же Iron Wolves, команда, которая выбила их в отборочных.
+wolf: Помнишь меня, школьник?
+mark: Помню. А ты нас помнишь?
+wolf[angry]: Сегодня вы не уйдёте.
+mark[happy]: Посмотрим.
+hide wolf
+clear
+show mark neutral
+show vlad neutral
+show danil neutral
+show lesha neutral
+show rafael neutral
+Счёт по картам 2:2. Решающая пятая карта, Ancient. Счёт на табло 12:12.
+cast: Последний раунд. Победитель получит всё.
+mark: Ребята. Один раунд. Один.
+? Дефолт: ждём ошибки Волков -> c3_final_default
+? Быстрый раш на Б всей командой -> c3_final_rush
+? Отдать решение Владу, он знает, как лучше -> c3_final_trust
+
+@c3_final_default
+add skill 1
+mark: Никаких рисков. Играем, как учили на тренировках.
+danil: Ждём.
+lesha: Дым кинут. Я спокойна, как удав. Правда, я не знаю, спокойны ли удавы.
+jump c3_final_clutch
+
+@c3_final_rush
+add spirit 1
+mark[happy]: На Б. Все. Громко. Вперёд!
+danil[happy]: КА-ВА-БАН-ГА!
+rafael[happy]: Я уже в лёрке!
+Рашить они умеют плохо. Но Волки этого не ожидали.
+jump c3_final_clutch
+
+@c3_final_trust
+add spirit 2
+mark: Влад. Решай ты. Я доверяю тебе.
+vlad: ...Ты уверен?
+mark: Конечно.
+vlad[happy]: Тогда на мид. Все за мной.
+jump c3_final_clutch
+
+@c3_final_clutch
+bg stage
+cast: Бомба поставлена! Десять секунд до взрыва, но в живых остался один из Kettle Knights!
+show vlad neutral
+cast: Влад против двоих!
+В наушниках стучит пульс. Влад замирает у стены.
+vlad: Я вывезу.
+Это первое, что он произнёс громко за все два месяца.
+cast: Первый фраг! Второй фраг! Он делает это!
+cast: Бомба дефьюзнута! Kettle Knights, девятый «Д», чемпионы Чебоксарского мажора!
+bg arena
+clear
+show mark happy
+show vlad happy
+show danil happy
+show lesha happy
+show rafael happy
+danil[happy]: МЫ ПОБЕДИЛИ!
+lesha[happy]: Я теперь самый счастливый человек на свете!
+rafael[happy]: Мой шлем оправдал себя.
+vlad[happy]: Мы это сделали.
+mark[happy]: Мы вместе. Это главное.
+show tato happy
+tato[happy]: Мои рыцари! Я горжусь вами.
+tato: И чайник, между прочим, тоже.
+
+card ЭПИЛОГ|Дорога домой
+bg bus
+clear
+show mark happy
+show tato happy
+Автобус везёт их обратно в родной город. В багаже кубок размером с половину Данила.
+if spirit >= 5 -> ep_high
+jump ep_normal
+
+@ep_high
+show danil happy
+show vlad happy
+show lesha happy
+show rafael happy
+Они едут молча и счастливо. Никто не спорит, никто не соревнуется. У команды есть что-то важнее кубка: друг друга.
+tato[happy]: Может быть, в следующем году мы поедем на мажор побольше.
+mark[happy]: Только если вы возьмёте чайник.
+tato: Без чайника не поеду.
+jump ep_end
+
+@ep_normal
+Они уснули, привалившись друг к другу. Кубок лежит на коленях у Марка. Татьяна Николаевна тихо накрывает мальчишек пледом.
+tato: Ну, всё. Теперь осталось дожить до выпускных экзаменов.
+mark: Вот это уже страшно.
+tato[happy]: Справимся. Вы же рыцари.
+jump ep_end
+
+@ep_end
+card КОНЕЦ|Но это уже совсем другая история.
+end
+`;
+const W = 400, H = 720, SCENE_H = 240, SS = 2;
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+cv.width = W * SS; cv.height = H * SS;
+function fit() {
+  const s = Math.min(innerWidth / W, innerHeight / H);
+  cv.style.width = (W * s) + 'px'; cv.style.height = (H * s) + 'px';
+}
+addEventListener('resize', fit); fit();
+
+// ---------------------------------------------------------- helpers
+const rgb = (r, g, b) => `rgb(${r},${g},${b})`;
+const rgba = (r, g, b, a) => `rgba(${r},${g},${b},${a / 255})`;
+const hex = n => '#' + n.toString(16).padStart(6, '0');
+function rect(x, y, w, h, c) { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); }
+function circ(x, y, r, c) { ctx.fillStyle = c; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); }
+function tri(x0, y0, x1, y1, x2, y2, c) {
+  ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.lineTo(x2, y2); ctx.closePath(); ctx.fill();
+}
+function textC(s, cx, y, px, c, bold) {
+  ctx.font = (bold ? 'bold ' : '') + px + 'px sans-serif'; ctx.fillStyle = c;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.fillText(s, cx, y); ctx.textAlign = 'left';
+}
+function textL(s, x, y, px, c, bold) {
+  ctx.font = (bold ? 'bold ' : '') + px + 'px sans-serif'; ctx.fillStyle = c;
+  ctx.textAlign = 'left'; ctx.textBaseline = 'top'; ctx.fillText(s, x, y);
+}
+function wrap(s, x, y, maxW, px, lineH, c) {
+  ctx.font = px + 'px sans-serif'; ctx.fillStyle = c; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+  const words = s.split(' '); let line = '';
+  for (const w of words) {
+    const t = line ? line + ' ' + w : w;
+    if (ctx.measureText(t).width > maxW && line) { ctx.fillText(line, x, y); y += lineH; line = w; }
+    else line = t;
+  }
+  if (line) ctx.fillText(line, x, y);
+  return y;
+}
+
+// -------------------------------------------------------- characters
+const CH = [
+  { key: 'mark',   name: 'Марк',               skin: 0xF2C9A5, hair: 0x2B2118, shirt: 0x2F5DA8, pants: 0x2A2F3F, accent: 0xD94A4A, style: 0, acc: 1, sprite: 1 },
+  { key: 'vlad',   name: 'Влад',               skin: 0xF0D2B8, hair: 0xD8C9A0, shirt: 0x23232B, pants: 0x333344, accent: 0x6A6A7A, style: 4, acc: 2, sprite: 1 },
+  { key: 'danil',  name: 'Данил',              skin: 0xE9BE98, hair: 0x3A2A1A, shirt: 0xC23B3B, pants: 0x2F3A52, accent: 0xFFFFFF, style: 1, acc: 0, sprite: 1 },
+  { key: 'lesha',  name: 'Лёша',               skin: 0xF3CFAF, hair: 0x7A4B2A, shirt: 0x3E9B5A, pants: 0x3A3A4A, accent: 0xF3A6B8, style: 0, acc: 3, sprite: 1 },
+  { key: 'rafael', name: 'Рафаэль',            skin: 0xE2B48C, hair: 0x1B1B1B, shirt: 0xE8872B, pants: 0x2F3A52, accent: 0x444455, style: 2, acc: 4, sprite: 1 },
+  { key: 'tato',   name: 'Татьяна Николаевна', skin: 0xF0D0B4, hair: 0x6B3F2A, shirt: 0x7B4FA8, pants: 0x3A3050, accent: 0x222222, style: 3, acc: 2, sprite: 1 },
+  { key: 'wolf',   name: 'Капитан Волков',     skin: 0xE5BF9C, hair: 0x15151A, shirt: 0x666C78, pants: 0x30333C, accent: 0xFFFFFF, style: 1, acc: 0, sprite: 1 },
+  { key: 'cast',   name: 'Комментатор',        skin: 0xFFFFFF, hair: 0xFFFFFF, shirt: 0x3B6EA5, pants: 0, accent: 0xFFFFFF, style: 0, acc: 0, sprite: 0 },
+  { key: 'chat',   name: 'Чат',                skin: 0xFFFFFF, hair: 0xFFFFFF, shirt: 0x7A5AA0, pants: 0, accent: 0xFFFFFF, style: 0, acc: 0, sprite: 0 },
+];
+const charIndex = k => CH.findIndex(c => c.key === k);
+
+// -------------------------------------------------------------- state
+let L = [], labels = {}, vars = {}, bg = 'black', vis = [], vmood = [], pc = 0;
+let state = 'title', speaker = -1, said = '', saidArr = [], typeN = 0, typeAcc = 0;
+let choices = [], chSel = 0, choiceStart = 0, cardA = '', cardB = '';
+let fade = 255, frame = 0, haveSave = false, tSel = 0;
+const getVar = n => vars[n] || 0;
+
+// ------------------------------------------------------------- sprites
+function drawChar(c, cx, footY, s, mood, speaking) {
+  const bob = speaking ? Math.sin(frame * 0.28) * 2 : 0;
+  const skin = hex(c.skin), hair = hex(c.hair), shirt = hex(c.shirt), pants = hex(c.pants), acc = hex(c.accent);
+  const dark = rgb(30, 24, 28), white = '#fff';
+  ctx.save(); ctx.translate(cx - 30 * s, footY - 120 * s + bob * s); ctx.scale(s, s);
+  rect(18, 92, 10, 24, pants); rect(32, 92, 10, 24, pants);
+  rect(16, 114, 14, 6, rgb(30, 30, 36)); rect(30, 114, 14, 6, rgb(30, 30, 36));
+  rect(12, 52, 36, 44, shirt); rect(4, 56, 8, 30, shirt); rect(48, 56, 8, 30, shirt);
+  circ(8, 88, 5, skin); circ(52, 88, 5, skin); rect(25, 50, 10, 8, skin);
+  if (c.style === 3) tri(22, 52, 38, 52, 30, 68, white);
+  if (c.key === 'mark') rect(12, 84, 36, 3, rgb(240, 240, 250));
+  circ(30, 30, 25, hair); circ(30, 38, 20, skin);
+  switch (c.style) {
+    case 1: tri(10, 22, 20, 0, 30, 22, hair); tri(24, 20, 34, -3, 44, 20, hair); tri(36, 22, 48, 2, 52, 24, hair); rect(10, 17, 40, 7, hair); break;
+    case 2: circ(14, 20, 9, hair); circ(26, 11, 9, hair); circ(38, 11, 9, hair); circ(48, 20, 9, hair); rect(12, 16, 36, 8, hair); break;
+    case 3: circ(30, 5, 9, hair); rect(10, 14, 40, 9, hair); rect(8, 22, 6, 18, hair); rect(46, 22, 6, 18, hair); break;
+    case 4: rect(8, 12, 44, 12, hair); tri(8, 24, 40, 24, 8, 38, hair); rect(46, 22, 6, 14, hair); break;
+    default: rect(10, 14, 40, 10, hair); rect(8, 22, 6, 10, hair); rect(46, 22, 6, 10, hair);
+  }
+  if (c.key === 'rafael' && getVar('helmet') === 1) {
+    rect(9, 8, 42, 16, rgb(165, 168, 178)); rect(9, 22, 42, 4, rgb(110, 112, 124)); tri(26, 8, 34, 8, 30, -4, rgb(205, 60, 60));
+  }
+  if (c.acc === 1 || c.acc === 4) {
+    circ(6, 38, 6, acc); circ(54, 38, 6, acc); rect(7, 11, 46, 3, acc); rect(5, 14, 3, 24, acc); rect(52, 14, 3, 24, acc);
+    if (c.acc === 1) rect(4, 46, 16, 2, acc);
+  }
+  if (c.acc === 2) {
+    const fr = rgb(40, 40, 50);
+    circ(22, 38, 8, fr); circ(38, 38, 8, fr); circ(22, 38, 6, skin); circ(38, 38, 6, skin); rect(29, 37, 2, 2, fr);
+  }
+  if (mood === 1) { rect(18, 37, 8, 3, dark); rect(34, 37, 8, 3, dark); }
+  else if (mood === 4) { circ(22, 38, 5, white); circ(38, 38, 5, white); circ(22, 38, 2, dark); circ(38, 38, 2, dark); }
+  else { circ(22, 38, 2.6, dark); circ(38, 38, 2.6, dark); }
+  if (mood === 2) { tri(15, 28, 28, 32, 28, 35, hair); tri(45, 28, 32, 32, 32, 35, hair); }
+  else if (mood === 3) { tri(15, 33, 28, 29, 28, 32, hair); tri(45, 33, 32, 29, 32, 32, hair); }
+  else if (mood === 0 || mood === 1) { rect(16, 29, 11, 2, hair); rect(33, 29, 11, 2, hair); }
+  if (c.acc === 3) { circ(30, 44, 4.5, acc); circ(28.5, 44, 1, rgb(160, 80, 100)); circ(31.5, 44, 1, rgb(160, 80, 100)); }
+  switch (mood) {
+    case 1: tri(23, 47, 37, 47, 30, 55, dark); break;
+    case 2: rect(25, 49, 10, 3, dark); break;
+    case 3: rect(26, 50, 8, 2, dark); rect(24, 52, 3, 2, dark); rect(33, 52, 3, 2, dark); break;
+    case 4: circ(30, 51, 4, dark); break;
+    default: rect(25, 49, 10, 2, dark);
+  }
+  ctx.restore();
+}
+
+function drawBG(n) {
+  if (n === 'classroom') {
+    rect(0, 0, 400, 240, rgb(205, 208, 190)); rect(0, 176, 400, 64, rgb(150, 118, 88));
+    rect(70, 28, 200, 92, rgb(70, 50, 30)); rect(76, 34, 188, 80, rgb(40, 84, 62));
+    rect(90, 52, 90, 2, rgb(215, 215, 215)); rect(90, 66, 130, 2, rgb(215, 215, 215)); rect(90, 80, 60, 2, rgb(215, 215, 215));
+    rect(300, 30, 70, 100, rgb(140, 190, 230)); rect(333, 30, 4, 100, rgb(235, 235, 235)); rect(300, 78, 70, 4, rgb(235, 235, 235));
+    circ(30, 40, 16, rgb(250, 250, 250)); rect(29, 28, 2, 13, rgb(30, 30, 30));
+    for (let i = 0; i < 3; i++) {
+      rect(20 + i * 130, 150, 100, 12, rgb(120, 90, 60));
+      rect(30 + i * 130, 162, 6, 40, rgb(70, 50, 35)); rect(104 + i * 130, 162, 6, 40, rgb(70, 50, 35));
+    }
+  } else if (n === 'hall') {
+    rect(0, 0, 400, 240, rgb(196, 200, 212)); rect(0, 190, 400, 50, rgb(130, 124, 118)); rect(0, 40, 400, 8, rgb(160, 164, 176));
+    for (let i = 0; i < 8; i++) {
+      rect(i * 50 + 2, 50, 46, 130, rgb(86, 110, 150));
+      rect(i * 50 + 8, 64, 34, 4, rgb(60, 80, 110)); rect(i * 50 + 8, 72, 34, 4, rgb(60, 80, 110));
+      circ(i * 50 + 38, 120, 2, rgb(230, 230, 230));
+    }
+  } else if (n === 'street') {
+    rect(0, 0, 400, 120, rgb(64, 58, 108)); rect(0, 120, 400, 70, rgb(226, 150, 112)); rect(0, 190, 400, 50, rgb(224, 230, 240));
+    for (let i = 0; i < 6; i++) {
+      const h = 70 + (i * 37) % 50;
+      rect(i * 70 - 10, 190 - h, 64, h, rgb(50, 46, 70));
+      for (let j = 0; j < 3; j++) rect(i * 70 + 4 + j * 18, 190 - h + 10, 8, 10, rgb(250, 220, 120));
+    }
+    rect(300, 110, 4, 80, rgb(40, 40, 50)); circ(302, 108, 8, rgb(255, 235, 150));
+    for (let k = 0; k < 30; k++) circ((k * 53) % 400, (k * 29 + frame) % 240, 1.5, '#fff');
+  } else if (n === 'club') {
+    rect(0, 0, 400, 240, rgb(58, 56, 78)); rect(0, 170, 400, 70, rgb(70, 64, 60));
+    rect(160, 20, 80, 50, rgb(110, 56, 56)); rect(168, 28, 64, 6, rgb(240, 220, 160));
+    rect(20, 140, 360, 14, rgb(110, 80, 55));
+    for (let i = 0; i < 5; i++) {
+      const x = 40 + i * 58;
+      rect(x, 98, 48, 36, rgb(20, 20, 30)); rect(x + 3, 101, 42, 30, rgb(60, 130, 200)); rect(x + 20, 134, 8, 6, rgb(30, 30, 40));
+    }
+    rect(350, 112, 26, 28, rgb(200, 205, 215)); tri(376, 118, 388, 112, 376, 126, rgb(200, 205, 215));
+    rect(342, 116, 6, 18, rgb(80, 80, 90)); circ(363, 104 - Math.floor(frame / 4) % 14, 3, rgba(255, 255, 255, 120));
+  } else if (n === 'home') {
+    rect(0, 0, 400, 240, rgb(72, 62, 96)); rect(0, 180, 400, 60, rgb(96, 72, 56));
+    rect(300, 30, 70, 80, rgb(18, 24, 60)); rect(318, 48, 2, 2, '#fff'); rect(345, 70, 2, 2, '#fff');
+    rect(40, 130, 170, 10, rgb(120, 90, 60)); rect(50, 140, 6, 60, rgb(80, 60, 40)); rect(194, 140, 6, 60, rgb(80, 60, 40));
+    rect(80, 76, 76, 50, rgb(20, 20, 30)); rect(84, 80, 68, 42, rgb(80, 150, 220)); rect(112, 126, 10, 6, rgb(30, 30, 40));
+    circ(40, 118, 7, rgb(255, 225, 120));
+  } else if (n === 'arena' || n === 'stage') {
+    rect(0, 0, 400, 240, rgb(14, 14, 34));
+    tri(60, 0, 20, 200, 140, 200, rgba(120, 140, 255, 40));
+    tri(200, 0, 150, 200, 250, 200, rgba(255, 120, 200, 40));
+    tri(340, 0, 260, 200, 380, 200, rgba(120, 255, 200, 40));
+    rect(110, 20, 180, 62, rgb(20, 24, 50));
+    textC('CHEBOKSARY MAJOR', 200, 40, 20, rgb(255, 230, 120), true);
+    rect(0, 196, 400, 24, rgb(30, 30, 60));
+    if (n === 'stage') for (let i = 0; i < 5; i++) { rect(40 + i * 66, 172, 56, 8, rgb(60, 60, 90)); rect(50 + i * 66, 148, 36, 24, rgb(80, 150, 220)); }
+    for (let i = 0; i < 40; i++) circ(i * 10 + 5, 224 + (i * 7) % 10, 9, rgb(8, 8, 18));
+  } else if (n === 'bus') {
+    rect(0, 0, 400, 240, rgb(30, 34, 60)); rect(0, 190, 400, 50, rgb(50, 52, 60));
+    for (let i = 0; i < 3; i++) { rect(30 + i * 120, 40, 100, 80, rgb(18, 22, 50)); circ(60 + i * 120, 60, 1.5, '#fff'); circ(110 + i * 120, 90, 1.5, '#fff'); }
+    rect(0, 130, 400, 8, rgb(70, 70, 86));
+  } else if (n === 'title') {
+    rect(0, 0, 400, 240, rgb(22, 26, 56));
+    for (let i = 0; i < 40; i++) rect((i * 97) % 400, (i * 53) % 150, 2, 2, rgb(230, 230, 255));
+    rect(0, 200, 400, 40, rgb(36, 40, 78));
+  } else rect(0, 0, 400, 240, '#000');
+}
+
+// ---------------------------------------------------------- script
+function loadStory() {
+  L = []; labels = {};
+  for (const raw of STORY.split('\n')) {
+    const l = raw.trim();
+    if (!l || l[0] === '#') continue;
+    L.push(l);
+    if (l[0] === '@') labels[l.slice(1)] = L.length - 1;
+  }
+}
+function parseMood(m) {
+  if (!m) return 0;
+  if (m.startsWith('sh')) return 4;
+  return { h: 1, a: 2, s: 3 }[m[0]] || 0;
+}
+function startSay(spk, txt) {
+  speaker = spk; said = txt; saidArr = Array.from(txt); typeN = 0; typeAcc = 0; state = 'say';
+}
+function jumpTo(name) {
+  if (!(name in labels)) { startSay(-1, "Ошибка сценария: нет метки '" + name + "'"); pc = L.length; return true; }
+  pc = labels[name]; return false;
+}
+function saveGame(resume) {
+  try { localStorage.setItem('kk_save', JSON.stringify({ pc: resume, vars, bg, vis, vmood })); haveSave = true; } catch (e) {}
+}
+function loadGame() {
+  try {
+    const s = JSON.parse(localStorage.getItem('kk_save'));
+    if (!s || s.pc < 0 || s.pc >= L.length) return false;
+    pc = s.pc; vars = s.vars || {}; bg = s.bg || 'black'; vis = s.vis || []; vmood = s.vmood || [];
+    return true;
+  } catch (e) { return false; }
+}
+function run() {
+  for (;;) {
+    if (pc >= L.length) { state = 'end'; return; }
+    const ln = L[pc];
+    if (ln[0] === '@') { pc++; continue; }
+    if (ln[0] === '?') {
+      choiceStart = pc; choices = [];
+      while (pc < L.length && L[pc][0] === '?' && choices.length < 4) {
+        const body = L[pc].slice(1).trim(), i = body.lastIndexOf(' -> ');
+        choices.push({ text: i >= 0 ? body.slice(0, i) : body, label: i >= 0 ? body.slice(i + 4).trim() : '' });
+        pc++;
+      }
+      chSel = 0; state = 'choice'; saveGame(choiceStart); return;
+    }
+    const sp = ln.indexOf(' ');
+    const cmd = sp < 0 ? ln : ln.slice(0, sp), arg = sp < 0 ? '' : ln.slice(sp + 1).trim();
+    if (cmd === 'bg') { bg = arg; fade = 255; pc++; continue; }
+    if (cmd === 'show') {
+      const [k, m] = arg.split(/\s+/); const ci = charIndex(k);
+      if (ci >= 0 && CH[ci].sprite) {
+        let slot = vis.indexOf(ci);
+        if (slot < 0 && vis.length < 8) { vis.push(ci); vmood.push(0); slot = vis.length - 1; }
+        if (slot >= 0) vmood[slot] = parseMood(m);
+      }
+      pc++; continue;
+    }
+    if (cmd === 'hide') { const i = vis.indexOf(charIndex(arg)); if (i >= 0) { vis.splice(i, 1); vmood.splice(i, 1); } pc++; continue; }
+    if (cmd === 'clear') { vis = []; vmood = []; pc++; continue; }
+    if (cmd === 'jump') { if (jumpTo(arg)) return; continue; }
+    if (cmd === 'set' || cmd === 'add') {
+      const [v, x] = arg.split(/\s+/); const n = parseInt(x, 10);
+      if (!isNaN(n)) vars[v] = cmd === 'set' ? n : getVar(v) + n;
+      pc++; continue;
+    }
+    if (cmd === 'if') {
+      const m = arg.match(/^(\S+)\s+(==|!=|>=|<=|>|<)\s+(-?\d+)\s*->\s*(\S+)$/);
+      if (m) {
+        const a = getVar(m[1]), x = parseInt(m[3], 10);
+        const ok = { '==': a === x, '!=': a !== x, '>=': a >= x, '<=': a <= x, '>': a > x, '<': a < x }[m[2]];
+        if (ok) { if (jumpTo(m[4])) return; continue; }
+      }
+      pc++; continue;
+    }
+    if (cmd === 'card') {
+      const i = arg.indexOf('|'); cardA = i < 0 ? arg : arg.slice(0, i); cardB = i < 0 ? '' : arg.slice(i + 1);
+      state = 'card'; pc++; saveGame(pc); return;
+    }
+    if (cmd === 'end') { state = 'end'; return; }
+    const m = ln.match(/^([a-z]+)(?:\[(\w+)\])?:\s*(.*)$/);
+    if (m && charIndex(m[1]) >= 0) {
+      const ci = charIndex(m[1]);
+      if (m[2]) { const s = vis.indexOf(ci); if (s >= 0) vmood[s] = parseMood(m[2]); }
+      startSay(ci, m[3]); pc++; return;
+    }
+    startSay(-1, ln); pc++; return;
+  }
+}
+function newGame() { vars = {}; vis = []; vmood = []; pc = 0; bg = 'black'; fade = 255; run(); }
+function pick(i) {
+  if (i < 0 || i >= choices.length) return;
+  if (jumpTo(choices[i].label)) return;
+  run();
+}
+function advance() {
+  if (state === 'say') { if (typeN < saidArr.length) typeN = saidArr.length; else run(); }
+  else if (state === 'card') run();
+  else if (state === 'end') state = 'title';
+}
+function startFromTitle(w) { if (w === 1) { if (haveSave && loadGame()) { fade = 255; run(); } } else newGame(); }
+
+// ------------------------------------------------------------ render
+function drawWorld() {
+  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, SCENE_H); ctx.clip();
+  drawBG(bg);
+  const n = vis.length;
+  if (n > 0) {
+    const s = n <= 3 ? 1.2 : n === 4 ? 1.1 : n === 5 ? 0.95 : 0.85;
+    const sp = [0, 0, 110, 120, 95, 76, 64, 64, 64][n];
+    for (let i = 0; i < n; i++)
+      drawChar(CH[vis[i]], 200 + (i - (n - 1) / 2) * sp, 238, s, vmood[i], state === 'say' && speaker === vis[i]);
+  }
+  if (fade > 0) rect(0, 0, W, SCENE_H, rgba(0, 0, 0, fade));
+  ctx.restore();
+}
+function btn(x, y, w, h, c) { rect(x, y, w, h, c); }
+function render() {
+  rect(0, 0, W, H, rgb(22, 24, 38));
+  if (state === 'title') {
+    ctx.save(); ctx.beginPath(); ctx.rect(0, 0, W, SCENE_H); ctx.clip();
+    drawBG('title');
+    for (let i = 0; i < 6; i++) drawChar(CH[i], 42 + i * 63, 238, 0.85, i % 2 ? 1 : 0, false);
+    textC('KETTLE KNIGHTS', 200, 18, 34, rgb(255, 230, 120), true);
+    textC('Путь от 9«Д» до Чебоксарского мажора', 200, 66, 14, rgb(220, 225, 255));
+    ctx.restore();
+    for (let i = 0; i < 2; i++) {
+      const dis = i === 1 && !haveSave;
+      btn(40, 300 + i * 100, 320, 74, dis ? rgb(40, 42, 56) : (tSel === i ? rgb(90, 100, 170) : rgb(60, 66, 110)));
+      textC(i === 0 ? 'Новая игра' : 'Продолжить', 200, 322 + i * 100, 26, dis ? rgb(100, 100, 120) : '#fff', true);
+    }
+    return;
+  }
+  if (state === 'card') {
+    rect(0, 0, W, H, rgb(8, 8, 16));
+    textC(cardA, 200, 300, 36, rgb(255, 230, 120), true);
+    if (cardB) textC(cardB, 200, 360, 20, rgb(220, 225, 255));
+    textC('нажми, чтобы продолжить', 200, 640, 14, rgb(130, 135, 170));
+    return;
+  }
+  if (state === 'end') {
+    rect(0, 0, W, H, rgb(8, 8, 16));
+    textC('Спасибо за игру!', 200, 300, 32, rgb(255, 230, 120), true);
+    textC('нажми, чтобы вернуться в меню', 200, 640, 14, rgb(130, 135, 170));
+    return;
+  }
+  drawWorld();
+  if (state === 'choice') {
+    for (let i = 0; i < choices.length; i++) {
+      const y = 258 + i * 114;
+      btn(12, y, 376, 104, chSel === i ? rgb(95, 105, 180) : rgb(55, 60, 100));
+      wrap(choices[i].text, 26, y + 14, 348, 19, 26, '#fff');
+    }
+    return;
+  }
+  rect(8, 250, 384, 462, rgb(38, 42, 64));
+  if (speaker >= 0) {
+    rect(16, 258, 250, 36, hex(CH[speaker].shirt));
+    textL(CH[speaker].name, 26, 264, 20, '#fff', true);
+  }
+  wrap(saidArr.slice(0, typeN).join(''), 24, 312, 352, 21, 28, speaker < 0 ? rgb(205, 210, 235) : '#fff');
+  if (typeN >= saidArr.length && Math.floor(frame / 20) % 2 === 0) tri(360, 680, 378, 680, 369, 696, rgb(255, 230, 120));
+}
+
+function tick() {
+  frame++;
+  if (fade > 0) fade = Math.max(0, fade - 8);
+  if (state === 'say' && typeN < saidArr.length) typeN = Math.min(saidArr.length, typeN + 2);
+}
+let last = 0, acc = 0;
+function loop(t) {
+  const dt = Math.min(100, t - last); last = t; acc += dt;
+  while (acc >= 16.667) { tick(); acc -= 16.667; }
+  ctx.setTransform(SS, 0, 0, SS, 0, 0); render();
+  requestAnimationFrame(loop);
+}
+
+// ------------------------------------------------------------- input
+function onTap(x, y) {
+  if (state === 'title') {
+    if (x >= 40 && x < 360 && y >= 300 && y < 374) startFromTitle(0);
+    else if (x >= 40 && x < 360 && y >= 400 && y < 474) startFromTitle(1);
+  } else if (state === 'choice') {
+    for (let i = 0; i < choices.length; i++) { const by = 258 + i * 114; if (x >= 12 && x < 388 && y >= by && y < by + 104) { pick(i); break; } }
+  } else advance();
+}
+cv.addEventListener('pointerdown', e => {
+  e.preventDefault();
+  const r = cv.getBoundingClientRect();
+  onTap((e.clientX - r.left) / r.width * W, (e.clientY - r.top) / r.height * H);
+});
+addEventListener('keydown', e => {
+  if (state === 'choice') {
+    if (e.key === 'ArrowUp') chSel = (chSel + choices.length - 1) % choices.length;
+    else if (e.key === 'ArrowDown') chSel = (chSel + 1) % choices.length;
+    else if (e.key === 'Enter' || e.key === ' ') pick(chSel);
+  } else if (state === 'title') {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') tSel = 1 - tSel;
+    else if (e.key === 'Enter' || e.key === ' ') startFromTitle(tSel);
+  } else if (e.key === 'Enter' || e.key === ' ') advance();
+});
+
+loadStory();
+try { haveSave = !!localStorage.getItem('kk_save'); } catch (e) {}
+window.__vn = { advance, pick, newGame, render, tick, get state() { return state; }, get choices() { return choices; }, get vars() { return vars; }, L, labels };
+requestAnimationFrame(loop);
+</script></body></html>
